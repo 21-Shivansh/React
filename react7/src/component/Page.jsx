@@ -3,7 +3,7 @@ import Product from './Product'
 
 const Page = ({products,setCartItem}) => {
   return (
-    <div className='flex flex-wrap  mt-2 pb-5 '>
+    <div className='flex flex-col lg:flex-row flex-wrap  mt-2 pb-5 '>
         {
             products.map((ele,ind)=><Product key={ind} product={ele} setCartItem={setCartItem} />)
         }
@@ -11,4 +11,4 @@ const Page = ({products,setCartItem}) => {
   )
 }
 
-export default Page
+export default Page;

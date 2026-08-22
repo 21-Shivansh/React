@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CartProduct from './CartProduct';
 
 const Cart = ({cartItem,setCartItem,setToggle}) => {
-  let [total,setTotal] = useState(0);
-
-  useEffect(()=>{
-    setTotal(prev=>
-      cartItem.reduce((acc,curr)=>{
-        return acc + (curr.price);
-      },prev)
-    )
-  },[cartItem])
+  let total = cartItem.reduce((acc,curr) => acc + curr.price ,0)  
 
   let discountPrice = (total*(0.9)).toFixed(2);
 
@@ -57,7 +49,7 @@ const Cart = ({cartItem,setCartItem,setToggle}) => {
             )
           }
         </div>
-        <div className="h-fit w-full rounded-2xl border border-gray-800 bg-gray-900 p-6 shadow-xl lg:w-1/3 fixed right-10">
+        <div className="h-fit w-full rounded-2xl border border-gray-800 bg-gray-900 p-6 shadow-xl lg:w-1/3 sticky right-10">
           <h2 className="mb-6 border-b border-gray-700 pb-4 text-xl font-bold">
             Order Summary
           </h2>
@@ -75,7 +67,7 @@ const Cart = ({cartItem,setCartItem,setToggle}) => {
                 Price
               </span>
               <span className="font-medium">
-                $ {total>0 ? (total) : 0 }
+                $ {total.toFixed(2)}
               </span>
             </div>
             <div className="flex justify-between">
@@ -93,12 +85,7 @@ const Cart = ({cartItem,setCartItem,setToggle}) => {
               Final Price
             </span>
             <span>
-              ${ total>0 ? 
-              (
-                discountPrice
-              ) : (
-                total
-              )}
+              $ { total>0 ? (discountPrice) : ('0.00')}
             </span>
           </div>
           <button
