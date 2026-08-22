@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CartProduct from './CartProduct';
 
 const Cart = ({cartItem,setCartItem,setToggle}) => {
+  
   let total = cartItem.reduce((acc,curr) => acc + curr.price ,0)  
 
   let discountPrice = (total*(0.9)).toFixed(2);

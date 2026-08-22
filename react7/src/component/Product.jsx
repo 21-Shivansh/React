@@ -5,7 +5,7 @@ const Product = ({ product,setCartItem }) => {
     setCartItem(prev => [...prev,product])
   };
   return (
-    <div className='p-2 h-130 sm:w-full md:w-1/4 lg:w-1/4 rounded-lg'>
+    <div className='p-2 h-130 sm:w-full lg:w-1/4 rounded-lg'>
       <div className='p-1.5 h-full flex flex-col gap-1 text-white justify-between border border-black rounded-xl hover:scale-x-108 hover:scale-y-110 hover:bg-olive-700 ease-in-out duration-200'>
         <div className='h-1/2 w-full flex justify-center items-center'>
           <img className='h-full object-cover' src={product.image} alt="" />
