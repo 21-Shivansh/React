@@ -3,8 +3,13 @@ import { MyStore } from '../context/MyContext';
 import CartCard from './CartCard';
 
 const CartPage = () => {
-    const {cartProduct} = useContext(MyStore);
-    console.log(cartProduct)
+    const {cartProduct,setToggle} = useContext(MyStore);
+
+    let totalPrice = cartProduct.reduce((acc,curr)=>{
+        return (curr.quantity * curr.price) + acc 
+    },0)
+
+    let discountPrice = totalPrice * 0.9 ;
 
     let backHome = () => {
         setToggle(true)
@@ -66,7 +71,7 @@ const CartPage = () => {
                                 Price
                             </span>
                             <span className="font-medium">
-                                {/* $ {total.toFixed(2)} */}00
+                                $ {totalPrice.toFixed(2)}
                             </span>
                         </div>
                         <div className="flex justify-between">
@@ -84,7 +89,7 @@ const CartPage = () => {
                             Final Price
                         </span>
                         <span>
-                            {/* $ {total > 0 ? (discountPrice) : ('0.00')} */}00
+                            $ {totalPrice > 0 ? (discountPrice.toFixed(2)) : ('0.00')}
                         </span>
                     </div>
                     <button

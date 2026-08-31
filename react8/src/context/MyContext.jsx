@@ -4,24 +4,45 @@ import axios from 'axios';
 
 export const MyStore = createContext();
 
-export const ContextProvider = ({children}) => {
+export const ContextProvider = ({ children }) => {
 
-    const [products,setProducts] = useState([]);
-    const getData = async() => {
+    const [products, setProducts] = useState([]);
+    const getData = async () => {
         let response = await axios('https://fakestoreapi.com/products')
         setProducts(response.data);
     }
-    useEffect(()=>{
+    useEffect(() => {
         getData();
-    },[])
+    }, [])
 
-    const [toggle,setToggle] = useState(true);
+    const [toggle, setToggle] = useState(true);
 
-    const [cartProduct,setCartProduct] = useState([]);
-    console.log(cartProduct)
-    
+    const [cartProduct, setCartProduct] = useState([]);
 
-    return <MyStore.Provider value={{products,toggle,setToggle,cartProduct,setCartProduct}} >
+    const handleInc = (id) => {
+        setCartProduct( prev => 
+            prev.map( ele => 
+                ele.id === id ? {...ele , quantity: ele.quantity + 1 } : ele
+            )
+        )
+    }
+
+    const handleDec = (id) => {
+        let decEle = cartProduct.find(ele => ele.id === id);
+        if (decEle.quantity > 1) {
+            setCartProduct(prev =>
+                prev.map(ele =>
+                    ele.id === id ? { ...ele, quantity: ele.quantity - 1 } : ele
+                )
+            )
+        }else{
+            setCartProduct( prev => 
+                prev.filter( ele => ele !== decEle)
+            )
+        }
+    }
+
+    return <MyStore.Provider value={{ products, toggle, setToggle, cartProduct, setCartProduct,handleInc,handleDec }} >
         {children};
     </MyStore.Provider>
 }
