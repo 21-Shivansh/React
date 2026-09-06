@@ -1,0 +1,3 @@
+
+
+Iss mein humne sikha ki dynamic routing kese work krti hai aur useparams ko bhi dekha hai 
