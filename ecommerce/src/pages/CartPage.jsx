@@ -1,4 +1,5 @@
 import React from 'react'
+import {useNavigate} from 'react-router'
 
 const CartPage = () => {
 
@@ -20,6 +21,8 @@ const CartPage = () => {
       image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=500&q=80'
     }
   ]
+
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-[#F5F5F7]">
@@ -221,6 +224,7 @@ const CartPage = () => {
             <div className="mt-8">
 
               <button
+                onClick={()=>navigate('/collection')}
                 className="text-xs tracking-[0.2em]
                 text-[#A1A1A6]
                 hover:text-[#D4AF37]

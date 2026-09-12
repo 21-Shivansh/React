@@ -1,24 +1,43 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { MyStore } from '../context/MyContext'
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const { setToggle, setIsAuth } = useContext(MyStore);
+    const defaultObjLog = {
+        email:'',
+        password:''
+    }
+
+    const {register,handleSubmit,reset,formState:{errors}} = useForm({
+        mode:'onBlur',
+        defaultValues:defaultObjLog,
+    })
+
+    const { setToggle, setIsAuth, users } = useContext(MyStore);
 
     const handleSwitch = () => {
         setToggle(prev => prev = !prev);
     }
 
-    const handleLogin = () => {
-        setIsAuth(true)
-        navigate('/home')
+    const handleLogin = (data) => {
+        
+        let checkExists = users.some( ele => ele.email === data.email && ele.password === data.password);
+
+        if(checkExists){ 
+            setIsAuth(true)
+            navigate('/home')
+        }else{
+            alert('User does not exists OR Worng credentials.')
+        }
+
     }
 
 
     return (
-        <div className="h-screen bg-[#0D0D0D] text-[#F5F5F7] flex items-center justify-center px-4">
+        <form onSubmit={handleSubmit(handleLogin)} className="h-screen bg-[#0D0D0D] text-[#F5F5F7] flex items-center justify-center px-4">
 
             {/* Login Card */}
             <div className="w-full max-w-lg">
@@ -48,7 +67,11 @@ const Login = () => {
                             type="email"
                             placeholder="Enter your email"
                             className="w-full h-12 px-4 bg-[#0D0D0D] border border-[#2A2A2A] rounded-lg text-[#F5F5F7] placeholder:text-[#666] outline-none focus:border-[#D4AF37] transition-colors duration-300"
+                            {...register('email',{
+                                required:'Email required'
+                            })}
                         />
+                        {errors.email && <p className='text-red-700'>{errors.email.message}</p>}
 
                     </div>
 
@@ -72,7 +95,11 @@ const Login = () => {
                             type="password"
                             placeholder="Enter your password"
                             className="w-full h-12 px-4 bg-[#0D0D0D] border border-[#2A2A2A] rounded-lg text-[#F5F5F7] placeholder:text-[#666] outline-none focus:border-[#D4AF37] transition-colors duration-300"
+                            {...register('password',{
+                                required:'Password required'
+                            })}
                         />
+                        { errors.password && <p className='text-red-700'>{errors.password.message}</p>}
 
                     </div>
 
@@ -93,7 +120,7 @@ const Login = () => {
 
 
                     {/* Login Button */}
-                    <button onClick={handleLogin} className="w-full h-12 bg-[#D4AF37] text-[#0D0D0D] rounded-lg font-semibold tracking-wide hover:bg-[#F5F5F7] transition-all duration-300">SIGN IN</button>
+                    <button className="w-full h-12 bg-[#D4AF37] text-[#0D0D0D] rounded-lg font-semibold tracking-wide hover:bg-[#F5F5F7] transition-all duration-300">SIGN IN</button>
 
 
                     {/* Register */}
@@ -101,14 +128,14 @@ const Login = () => {
 
                         Don't have an account?
 
-                        <p onClick={handleSwitch} className="ml-1 text-[#D4AF37] hover:text-[#F5F5F7] transition-colors">Create Account</p>
+                        <span onClick={handleSwitch} className="ml-1 text-[#D4AF37] hover:text-[#F5F5F7] transition-colors">Create Account</span>
                     </p>
 
                 </div>
 
             </div>
 
-        </div>
+        </form>
     )
 }
 
