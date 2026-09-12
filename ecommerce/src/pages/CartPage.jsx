@@ -52,9 +52,7 @@ const CartPage = () => {
             </p>
 
           </div>
-
         </div>
-
       </section>
 
 
