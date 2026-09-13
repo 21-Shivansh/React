@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router'
+import { MyStore } from '../context/MyContext';
 
 const ProductCard = ({ product }) => {
+    const navigate = useNavigate();
+    const { setCartItems } = useContext(MyStore);
 
-    console.log(product)
+    const handleATC = () => {
+        let newAddedProduct = {...product,quantity: 1}
+        setCartItems(prev => [...prev,newAddedProduct])
+    }
 
     return (
         <div className="group cursor-pointer">
@@ -20,6 +27,7 @@ const ProductCard = ({ product }) => {
                         group-hover:scale-105
                         transition-transform
                         duration-700"
+                        onClick={()=>navigate(`/collection/${product.id}`)}
                     />
 
                 </div>
@@ -71,6 +79,7 @@ const ProductCard = ({ product }) => {
                         uppercase
                         hover:bg-[#E5C158]
                         transition"
+                        onClick={handleATC}
                     >
                         Add To Cart
                     </button>

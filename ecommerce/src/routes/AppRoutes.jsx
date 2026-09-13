@@ -7,6 +7,7 @@ import CartPage from '../pages/CartPage';
 import LRPage from '../pages/LRPage';
 import ProtectedRoute from './ProtectedRoute';
 import CollectionPage from '../pages/CollectionPage';
+import ProductPage from '../pages/ProductPage';
 
 
 
@@ -39,6 +40,11 @@ const AppRoutes = () => {
         <Route path='/cart' element={
           <ProtectedRoute>
             <CartPage />
+          </ProtectedRoute>
+        } />
+        <Route path='/collection/:id' element={
+          <ProtectedRoute>
+            <ProductPage />
           </ProtectedRoute>
         } />
       </Routes>

@@ -62,6 +62,7 @@ export const ContextProvider = ({children}) => {
 
 
     const [cartItems,setCartItems] = useState([]);
+    console.log(cartItems)
 
 
     return (
