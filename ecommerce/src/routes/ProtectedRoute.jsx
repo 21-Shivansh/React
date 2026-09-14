@@ -8,7 +8,7 @@ const ProtectedRoute = ({children}) => {
 
 
     if( !isAuth ){
-        return <Navigate to={'/'}/>
+        return <Navigate to={'/'} replace/>
     }
     
   return children;

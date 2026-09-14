@@ -9,6 +9,12 @@ const CartPage = () => {
 
   const navigate = useNavigate();
 
+  const subTotal = cartItems.reduce((acc,curr)=>{
+    return acc + (curr.quantity * curr.price);
+  },0)
+
+  const total = subTotal + 30;
+
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-[#F5F5F7]">
 
@@ -156,7 +162,7 @@ const CartPage = () => {
                       </span>
 
                       <span>
-                        $3,020
+                        ${subTotal.toFixed(2)}
                       </span>
 
                     </div>
@@ -180,7 +186,7 @@ const CartPage = () => {
                       </span>
 
                       <span>
-                        $302
+                        $30
                       </span>
 
                     </div>
@@ -195,9 +201,8 @@ const CartPage = () => {
                       Total
                     </span>
 
-                    <span className="text-2xl font-light
-              text-[#D4AF37]">
-                      $3,322
+                    <span className="text-2xl font-light text-[#D4AF37]">
+                      ${total.toFixed(2)}
                     </span>
 
                   </div>
@@ -208,6 +213,7 @@ const CartPage = () => {
                     tracking-[0.18em] uppercase
                     hover:bg-[#F5F5F7]
                     transition-all duration-300"
+                    onClick={()=>navigate('/payment_gateway')}
                   >
                     Proceed To Checkout
                   </button>

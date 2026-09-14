@@ -1,6 +1,43 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { MyStore } from '../context/MyContext'
 
 const CartCard = ({item}) => {
+
+  const {cartItems,setCartItems} = useContext(MyStore);
+
+  const handleInc = () => {
+    let newQuat = {...item,quantity: item.quantity+1};
+    setCartItems((prev)=>{
+      return prev.map((ele)=>{
+        if(ele.id === item.id){
+          return newQuat;
+        }
+        return ele;
+      })
+    })
+  }
+
+  const handleDec = () => {
+    if(item.quantity > 1){
+      let newQuat = {...item,quantity: item.quantity-1};
+      setCartItems((prev)=>{
+        return prev.map((ele)=>{
+          if(ele.id === item.id){
+            return newQuat;
+          }
+          return ele;
+        })
+      })
+    }
+  }
+
+  const handleRemove = () => {
+    setCartItems(prev => 
+      prev.filter((ele) => ele.id !== item.id)
+    )
+  }
+
+
   return (
     <div key={item.id} className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-0 py-7 border-b border-[#1A1A1A]">
 
@@ -27,7 +64,7 @@ const CartCard = ({item}) => {
             {item.name}
           </h3>
 
-          <button className="text-xs text-[#777] hover:text-[#D4AF37] transition mt-5">
+          <button className="text-xs text-[#777] hover:text-[#D4AF37] transition mt-5" onClick={handleRemove}>
             Remove
           </button>
 
@@ -61,6 +98,7 @@ const CartCard = ({item}) => {
 
           <button
             className="w-9 h-9 text-[#A1A1A6] hover:text-[#D4AF37] transition"
+            onClick={handleDec}
           >
             −
           </button>
@@ -69,7 +107,10 @@ const CartCard = ({item}) => {
             {item.quantity}
           </span>
 
-          <button className="w-9 h-9 text-[#A1A1A6] hover:text-[#D4AF37] transition">
+          <button
+            className="w-9 h-9 text-[#A1A1A6] hover:text-[#D4AF37] transition"
+            onClick={handleInc}
+          >
             +
           </button>
 

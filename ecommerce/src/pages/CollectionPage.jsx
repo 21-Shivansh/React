@@ -4,7 +4,7 @@ import ProductCard from '../components/ProductCard'
 
 const CollectionPage = () => {
 
-  const {setSelectedCategory,selectedCategory,filterProducts} = useContext(MyStore);
+  const {setSelectedCategory,selectedCategory,filterProducts,cartItems} = useContext(MyStore);
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -149,7 +149,9 @@ const CollectionPage = () => {
                 .includes(searchTerm.toLowerCase())
             )
             .map((product) => {
-              return <ProductCard key={product.id} product={product}/>
+              let init = cartItems.find(ele => ele.id === product.id)
+
+              return <ProductCard key={product.id} product={product} init={init}/>
           })
           }
 

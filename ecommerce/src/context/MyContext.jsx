@@ -9,7 +9,6 @@ export const ContextProvider = ({children}) => {
     const [toggle, setToggle] = useState(true);
 
     const [isAuth, setIsAuth] = useState(false);
-    
 
     const [users, setUsers] = useState(JSON.parse(localStorage.getItem('users')) || []);
 
@@ -61,8 +60,12 @@ export const ContextProvider = ({children}) => {
     }, [selectedCategory, products])
 
 
-    const [cartItems,setCartItems] = useState([]);
-    console.log(cartItems)
+    const [cartItems,setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
+
+    useEffect(()=>{
+        localStorage.setItem('cartItems',JSON.stringify(cartItems))
+    },[ cartItems ])
+
 
 
     return (
@@ -80,7 +83,7 @@ export const ContextProvider = ({children}) => {
                 setProducts,
                 selectedCategory,
                 setSelectedCategory,
-                filterProducts
+                filterProducts,
             }}
         >
             {children}

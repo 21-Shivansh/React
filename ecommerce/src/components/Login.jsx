@@ -25,7 +25,6 @@ const Login = () => {
     const handleLogin = (data) => {
         
         let checkExists = users.some( ele => ele.email === data.email && ele.password === data.password);
-
         if(checkExists){ 
             setIsAuth(true)
             navigate('/home')

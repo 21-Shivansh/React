@@ -13,11 +13,6 @@ const Register = () => {
         setToggle(prev => prev = !prev);
     }
 
-    const handleRegister = () => {
-        setIsAuth(true);
-        navigate('/home');
-    }
-
     let defaultObj = {
         fullname:'',
         email:'',
@@ -31,8 +26,9 @@ const Register = () => {
     })
 
     const formData = (data) => {
-        setUsers(prev => [...prev,data])
-        console.log(data)
+        setUsers(prev => [...prev,data]);
+        setIsAuth(true);
+        navigate('/home');
         reset();
     }
 
@@ -160,7 +156,7 @@ const Register = () => {
 
 
                     {/* Create Account */}
-                    <button onClick={handleRegister} className="w-full h-12 bg-[#D4AF37] text-[#0D0D0D] rounded-lg font-semibold tracking-wide hover:bg-[#F5F5F7] transition-all duration-300" >CREATE ACCOUNT</button>
+                    <button className="w-full h-12 bg-[#D4AF37] text-[#0D0D0D] rounded-lg font-semibold tracking-wide hover:bg-[#F5F5F7] transition-all duration-300" >CREATE ACCOUNT</button>
 
 
                     {/* Login */}

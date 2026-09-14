@@ -6,10 +6,14 @@ const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const { setIsAuth } = useContext(MyStore);
+    const { setIsAuth,cartItems } = useContext(MyStore);
+
+    let totalItems = cartItems.reduce((acc,curr)=>{
+        return acc + curr.quantity; 
+    },0)
 
     const handleLogOut = () => {
-        setIsAuth(true);
+        setIsAuth(false);
         navigate('/')
     }
 
@@ -67,7 +71,7 @@ const Navbar = () => {
                             </svg>
                             {/* Cart count */}
                             <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#D4AF37] text-[#0D0D0D] text-[9px] font-bold flex items-center justify-center">
-                                0
+                                {totalItems}
                             </span>
                         </NavLink>
                     </button>

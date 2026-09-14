@@ -8,6 +8,8 @@ import LRPage from '../pages/LRPage';
 import ProtectedRoute from './ProtectedRoute';
 import CollectionPage from '../pages/CollectionPage';
 import ProductPage from '../pages/ProductPage';
+import PublicRoute from './PublicRoute';
+import CheckoutPage from '../pages/CheckoutPage';
 
 
 
@@ -15,7 +17,11 @@ const AppRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<LRPage />} />
+        <Route path='/' element={
+          <PublicRoute>
+            <LRPage/>
+          </PublicRoute>
+        } />
 
         <Route path='/home' element={
           <ProtectedRoute>
@@ -45,6 +51,11 @@ const AppRoutes = () => {
         <Route path='/collection/:id' element={
           <ProtectedRoute>
             <ProductPage />
+          </ProtectedRoute>
+        } />
+        <Route path='/payment_gateway' element={
+          <ProtectedRoute>
+            <CheckoutPage />
           </ProtectedRoute>
         } />
       </Routes>

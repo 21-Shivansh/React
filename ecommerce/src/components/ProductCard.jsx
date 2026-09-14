@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { MyStore } from '../context/MyContext';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,init }) => {
     const navigate = useNavigate();
     const { setCartItems } = useContext(MyStore);
 
@@ -63,26 +63,24 @@ const ProductCard = ({ product }) => {
 
 
                 {/* Quick Add */}
-                <div
-                    className="absolute bottom-0 left-0 right-0
-                    translate-y-full
-                    group-hover:translate-y-0
-                    transition-transform duration-500"
-                >
+                <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
 
-                    <button
-                        className="w-full py-4
-                        bg-[#D4AF37]
-                        text-[#0D0D0D]
-                        text-xs font-semibold
-                        tracking-[0.15em]
-                        uppercase
-                        hover:bg-[#E5C158]
-                        transition"
-                        onClick={handleATC}
-                    >
-                        Add To Cart
-                    </button>
+                    {
+                        init ? (
+                            <button 
+                                className="w-full py-4 bg-[#0D0D0D] text-[#D4AF37] border border-[#D4AF37] text-xs font-semibold tracking-[0.15em] uppercase transition"
+                            >
+                                Added In Cart
+                            </button>
+                        ) : (
+                            <button
+                                className="w-full py-4 bg-[#D4AF37] text-[#0D0D0D] text-xs font-semibold tracking-[0.15em] uppercase hover:bg-[#E5C158] transition"
+                                onClick={handleATC}
+                            >
+                                Add To Cart
+                            </button>
+                        )
+                    }
 
                 </div>
 
