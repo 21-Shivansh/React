@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, useSyncExternalStore } from "react";
-import axios from 'axios';
+import { axiosInstance } from "../config/axiosInstance";
 
 export const Auth = createContext();
 
@@ -21,11 +21,11 @@ export const ContextProvider = ({children}) => {
     const [productsData, setProductsData] = useState([]);
 
     const getUserData = async() => {
-        let res = await axios.get('https://fakestoreapi.com/users')
+        let res = await axiosInstance.get('/users')
         setUserData(res.data)
     }
     const getProductsData = async () => {
-        let res = await axios.get('https://fakestoreapi.com/products')
+        let res = await axiosInstance.get('/products')
         setProductsData(res.data)
     }
     useEffect(()=>{
