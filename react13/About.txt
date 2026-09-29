@@ -1,0 +1,5 @@
+Memoization :-
+
+React.memo()
+useCallback()
+useMemo()
