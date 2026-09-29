@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Second = () => {
+const Second = ({secondGreet}) => {
   console.log('second component rendering......')
+
+  secondGreet()
 
   return (
     <div>
