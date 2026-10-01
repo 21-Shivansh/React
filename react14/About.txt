@@ -1,0 +1,4 @@
+Searching function
+Debouncing
+Throtling
+Loader and hyderateFallbackElement in Data Routing 
