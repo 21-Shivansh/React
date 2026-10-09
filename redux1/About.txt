@@ -1,0 +1,5 @@
+1. Redux Setup
+2. Restaurent logic
+3.i. app/store - (store setup)
+3.ii. feature/counterSlice - (reducer setup) 
+3.iii. wrap app component with store with provider
