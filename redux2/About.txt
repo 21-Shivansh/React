@@ -1,2 +1,2 @@
-1.Auth Slice
+1.Auth Slice(login and register)
 2.practice the counter app
