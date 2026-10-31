@@ -6,11 +6,13 @@ import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import HomePage from '../pages/HomePage'
 import ContactPage from '../pages/ContactPage'
+import AboutPage from '../pages/AboutPage'
 import PublicProtected from './protected/PublicProtected'
 import MainProtected from './protected/MainProtected'
 import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../feature/authSlice'
+import CounterPage from '../pages/CounterPage'
 
 const AppRoutes = () => {
 
@@ -65,6 +67,14 @@ const AppRoutes = () => {
                         {
                             path: '/contact',
                             element: <ContactPage />
+                        },
+                        {
+                            path:'/counter',
+                            element: <CounterPage />
+                        },
+                        {
+                            path:'/about',
+                            element: <AboutPage/>
                         }
                     ]
                 }

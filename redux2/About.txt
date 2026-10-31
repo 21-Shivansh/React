@@ -1,3 +1,4 @@
 Auth Slice(login and register)
 practice the counter app
 Hyderation function
+loading skeleton & (try catch finally)
